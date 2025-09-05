@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Live Weather — Advanced</title>
+
+  <!-- Weather Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css"/>
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- App CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="app" class="app theme-default">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot"></span><h1>Live Weather</h1>
+        <div id="clock" class="clock"></div>
+      </div>
+
+      <div class="controls">
+        <div class="search">
+          <input id="q" placeholder="Search city (e.g. London, Mumbai)" />
+          <button id="searchBtn" class="btn">Search</button>
+        </div>
+
+        <div class="buttons">
+          <button id="locBtn" class="btn secondary">Use my location</button>
+          <button id="unitBtn" class="btn ghost" title="Toggle °C/°F">°C</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <section class="card current-card">
+        <div class="place-row">
+          <div>
+            <div id="place" class="place-name">—</div>
+            <div id="updated" class="meta">Updated —</div>
+          </div>
+          <div id="bigIcon" class="big-icon wi wi-day-sunny">?</div>
+        </div>
+
+        <div class="temp-row">
+          <div id="temp" class="temp">—</div>
+          <div class="small-stats">
+            <div><div class="label">Humidity</div><div id="hum" class="value">—</div></div>
+            <div><div class="label">Wind</div><div id="wind" class="value">—</div></div>
+            <div><div class="label">Feels</div><div id="feels" class="value">—</div></div>
+          </div>
+        </div>
+
+        <div class="extras">
+          <div><strong>AQI</strong><div id="aqi">—</div></div>
+          <div><strong>UV</strong><div id="uv">—</div></div>
+          <div><strong>Timezone</strong><div id="tz">—</div></div>
+        </div>
+
+        <div class="favorites">
+          <input id="favName" placeholder="Name (optional)" />
+          <button id="saveFav" class="btn">Save to favorites</button>
+          <div id="favList" class="fav-list"></div>
+        </div>
+      </section>
+
+      <section class="card right-card">
+        <div class="section-head">
+          <h3>Hourly (24h)</h3>
+          <div class="small meta">Swipe / zoom for more</div>
+        </div>
+        <canvas id="hourChart" height="160"></canvas>
+
+        <div class="section-head" style="margin-top:18px;">
+          <h3>7-Day Forecast</h3>
+          <div id="forecast" class="forecast-grid"></div>
+        </div>
+
+        <div class="map-wrap card">
+          <div id="map" style="height:200px;border-radius:12px;overflow:hidden"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>Data: <span class="badge">Open-Meteo (no key)</span></div>
+      <div id="status" class="meta">Ready</div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
